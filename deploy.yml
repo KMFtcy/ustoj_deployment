@@ -1,0 +1,4 @@
+- hosts: testAll
+  remote_user: root
+  roles:
+    - test
