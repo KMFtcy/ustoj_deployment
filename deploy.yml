@@ -1,4 +1,4 @@
-- hosts: testAll
-  remote_user: root
+---
+- hosts: masterServer
   roles:
-    - test
+  - master

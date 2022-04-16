@@ -1,2 +1,4 @@
 ---
 # tasks file for master
+
+- include: install_k8s.yml
