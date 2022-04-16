@@ -1,4 +1,5 @@
 ---
 # tasks file for master
-
-- include: install_k8s.yml
+- name: import common tasks
+  include_role:
+    name: common

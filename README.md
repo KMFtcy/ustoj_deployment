@@ -6,7 +6,9 @@ We use ansible-playbook to handle the job.
 
 # Preparation
 
-1. Install Ubuntu 20.04 on each cluster machine, set up root account password. Then modify `/etc/ssh/sshd_config to allow root login permission. After that, remember to restart sshd service:
+1. Install Ubuntu 20.04 on each cluster machine, set up root account password. 
+
+Then modify `/etc/ssh/sshd_config to allow root login permission. After that, remember to restart sshd service:
 ```bash
 service sshd restart
 ```

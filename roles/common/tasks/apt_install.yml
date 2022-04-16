@@ -1,0 +1,19 @@
+- name: test bug
+  debug: 
+    msg: "{{ item }}"
+  with_items:
+    - "{{ apt_package }}"
+
+- name: We are in china, choose a better source, copy source file
+  copy:
+    src: "update_apt_source.sh"
+    dest: '/etc/apt'
+    owner: root
+    group: root
+    mode: 0777
+
+- name: update apt source.list
+  shell: /etc/apt/update_apt_source.sh
+
+- name: update apt
+  apt: update_cache=yes
