@@ -1,3 +1,6 @@
 ---
 apt_package:
   - docker.io
+  - kubeadm
+  - kubelet
+  - kubectl

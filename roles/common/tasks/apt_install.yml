@@ -7,7 +7,7 @@
 - name: We are in china, choose a better source, copy source file
   copy:
     src: "update_apt_source.sh"
-    dest: '/etc/apt'
+    dest: '/etc/apt/'
     owner: root
     group: root
     mode: 0777
@@ -15,5 +15,21 @@
 - name: update apt source.list
   shell: /etc/apt/update_apt_source.sh
 
-- name: update apt
-  apt: update_cache=yes
+- name: copy kubenetes apt gpg
+  copy:
+    src: "kubernetes-archive-keyring.gpg"
+    dest: '/usr/share/keyrings/'
+    owner: root
+    group: root
+    mode: 0644
+
+- name: set kubernetes apt source
+  shell: |-
+    echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] http://mirrors.ustc.edu.cn/kubernetes/apt kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+
+- name: update apt and install package
+  apt:
+    update_cache: yes
+    name: "{{ item }}"
+  with_items:
+    - "{{ apt_package }}"

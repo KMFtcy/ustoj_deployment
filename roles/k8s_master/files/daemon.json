@@ -1,0 +1,8 @@
+{
+  "registry-mirrors": [
+    "https://dockerhub.azk8s.cn",
+    "https://reg-mirror.qiniu.com",
+    "https://quay-mirror.qiniu.com"
+  ],
+  "exec-opts": [ "native.cgroupdriver=systemd" ]
+}

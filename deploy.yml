@@ -1,4 +1,5 @@
 ---
 - hosts: masterServer
   roles:
-  - master
+  - ustoj_master
+  - k8s_master
