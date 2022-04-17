@@ -1,2 +1,9 @@
 ---
 # vars file for master
+ustoj_master_replicas: 1
+ustoj_master_image: ustoj/master
+ustoj_master_image_version: latest
+
+ustoj_master_cm_name: ustoj-master-config
+data_host_path: /data/ustoj/master
+data_pod_path: /data/ustoj/

@@ -15,10 +15,22 @@ spec:
         app: ustoj-master
     spec:
       nodeSelector: 
-        region: east
-        type: user-node
+        ustoj: master
       containers:
       - name: ustoj-master
         image: {{ ustoj_master_image }}:{{ ustoj_master_image_version }}
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - mountPath: {{ data_pod_path }}
+          name: ustoj-master-data-hostpath
+        - mountPath: /etc/ustoj/master/config
+          name: ustoj-master-config
         # ports:
         # - containerPort: 80
+      volumes:
+      - name: ustoj-master-data-hostpath
+        hostPath:
+            path: {{ data_host_path }}
+      - name: ustoj-master-config
+        configMap:
+          name: {{ ustoj_master_cm_name }}

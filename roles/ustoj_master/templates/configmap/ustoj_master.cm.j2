@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ ustoj_master_cm_name }}
+data:
+  config.yaml: |
+    database:
+        user: {{ database_user }}
+        password: {{ database_password }}
+        address: {{ database_address }}
+        port: {{ database_port }}

@@ -1,6 +1,15 @@
 ---
+# database related
+database_user: root
+database_password: 123456
+database_address: 127.0.0.1
+database_port: 3006
+
+# k8s related
 k8s_admin_config_local_dir: /tmp/kubernetes_admin_config/
 k8s_join_command_file_path: /tmp/kubernetes_join_command
+
+# apt related
 apt_package:
   - docker.io
   - kubeadm

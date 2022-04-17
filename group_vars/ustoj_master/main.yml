@@ -1,3 +1,0 @@
-ustoj_master_replicas: 1
-ustoj_master_image: ustoj/master
-ustoj_master_image_version: latest

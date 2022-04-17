@@ -49,3 +49,7 @@
 
 - name: Copy join command to local file.
   local_action: copy content="{{ kubernetes_join_command.stdout_lines[0] }}" dest="{{ k8s_join_command_file_path }}" mode=0666
+
+- name: apply weave net as cni
+  remote_user: root
+  shell: kubectl taint nodes {{ inventory_hostname }} node-role.kubernetes.io/master:NoSchedule-
