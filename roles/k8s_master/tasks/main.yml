@@ -20,6 +20,21 @@
     force: yes
     remote_src: yes
 
+- name: fetch kubenetes admin config
+  fetch:
+    src: /etc/kubernetes/admin.conf
+    dest: "{{ k8s_admin_config_local_dir }}"
+    flat: yes
+    mode: 0644
+
+- name: copy kubenetes admin config
+  copy:
+    src: /etc/kubernetes/admin.conf
+    dest: $HOME/.kube/config
+    mode: 0644
+    force: yes
+    remote_src: yes
+
 - name: apply weave net as cni
   remote_user: root
   shell: kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"

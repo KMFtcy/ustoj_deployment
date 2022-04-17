@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ustoj-master-deployment
+  labels:
+    app: ustoj-master-deployment
+spec:
+  replicas: {{ ustoj_master_replicas }}
+  selector:
+    matchLabels:
+      app: ustoj-master
+  template:
+    metadata:
+      labels:
+        app: ustoj-master
+    spec:
+      nodeSelector: 
+        region: east
+        type: user-node
+      containers:
+      - name: ustoj-master
+        image: {{ ustoj_master_image }}:{{ ustoj_master_image_version }}
+        # ports:
+        # - containerPort: 80

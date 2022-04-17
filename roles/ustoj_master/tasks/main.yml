@@ -1,2 +1,8 @@
 ---
 # tasks file for master
+
+# label node
+- name: label master node
+  shell: kubectl --overwrite=true label nodes {{ inventory_hostname }} ustoj=master
+
+# apply master deployment

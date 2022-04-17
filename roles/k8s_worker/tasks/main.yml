@@ -8,6 +8,7 @@
     mode: 0777
 
 - name: Join the Worker nodes to the cluster.
-  become: yes
-  command: sh "{{ k8s_join_command_file_path }}"
-  register: joined_or_not
+  shell: sh "{{ k8s_join_command_file_path }}" && touch $HOME/cluster_joined.lock
+  args:
+    chdir: $HOME
+    creates: $HOME/cluster_joined.lock

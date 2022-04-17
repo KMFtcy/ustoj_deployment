@@ -1,10 +1,14 @@
 ---
-- hosts: masterServer
+- hosts: all
   roles:
   - common
+
+- hosts: masterServer
+  roles:
   - k8s_master
+  - ustoj_master
 
 - hosts: workerServer
   roles:
-  - common
   - k8s_worker
+  - ustoj_worker

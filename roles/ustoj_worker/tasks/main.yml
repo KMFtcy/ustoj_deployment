@@ -1,2 +1,10 @@
 ---
 # tasks file for ustoj_worker
+
+# label node
+- name: label worker node
+  local_action:
+    module: shell
+    cmd: kubectl --kubeconfig {{ k8s_admin_config_local_dir }}/admin.conf --overwrite=true label nodes {{ inventory_hostname }} ustoj=worker
+
+# apply worker deployment
