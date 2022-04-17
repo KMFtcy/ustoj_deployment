@@ -1,4 +1,5 @@
 ---
+kubernetes_join_command:
 apt_package:
   - docker.io
   - kubeadm
