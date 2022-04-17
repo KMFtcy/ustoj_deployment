@@ -3,3 +3,6 @@
 
 [masterServer]
 192.168.31.80
+
+[workerServer]
+192.168.31.107

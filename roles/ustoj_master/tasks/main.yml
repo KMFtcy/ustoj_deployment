@@ -1,5 +1,2 @@
 ---
 # tasks file for master
-- name: import common tasks
-  include_role:
-    name: common

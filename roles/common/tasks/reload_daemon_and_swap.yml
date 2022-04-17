@@ -1,0 +1,15 @@
+---
+- name: close swap
+  shell: swapoff -a && sed -i 's@/swap@\#\ /swap@g' /etc/fstab
+
+- name: modify daemon.json
+  copy:
+    force: yes
+    src: "daemon.json"
+    dest: '/etc/docker'
+    owner: root
+    group: root
+    mode: 0777
+
+- name: reload daemon
+  shell: systemctl daemon-reload && systemctl restart docker

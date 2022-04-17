@@ -23,6 +23,8 @@ ssh-keygen
 ssh-copy-id root@{cluster machine address}
 ```
 
+4. Each machine should have different hostname!
+
 ## Install dependencies on deploy machine
 
 > * ansible

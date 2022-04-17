@@ -1,5 +1,0 @@
----
-# tasks file for test
-
-- name: ping test
-  ping:

@@ -1,0 +1,13 @@
+---
+# tasks file for k8s_worker
+- name: Copy join command from Ansiblehost to the worker nodes.
+  become: yes
+  copy:
+    src: "{{ k8s_join_command_file_path }}"
+    dest: "{{ k8s_join_command_file_path }}"
+    mode: 0777
+
+- name: Join the Worker nodes to the cluster.
+  become: yes
+  command: sh "{{ k8s_join_command_file_path }}"
+  register: joined_or_not

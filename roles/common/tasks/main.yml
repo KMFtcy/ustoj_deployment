@@ -2,3 +2,4 @@
 # tasks file for master
 
 - include_tasks: apt_install.yml
+- include_tasks: reload_daemon_and_swap.yml

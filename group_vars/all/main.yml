@@ -1,5 +1,5 @@
 ---
-kubernetes_join_command:
+k8s_join_command_file_path: /tmp/kubernetes_join_command
 apt_package:
   - docker.io
   - kubeadm
