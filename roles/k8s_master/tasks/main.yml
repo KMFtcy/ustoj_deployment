@@ -55,7 +55,7 @@
 
 - name: remove master taint
   remote_user: root
-  shell: kubectl taint --allow-missing-template-keys=true nodes {{ inventory_hostname }} node-role.kubernetes.io/master:NoSchedule- && touch $HOME/removed_taint.lock
+  shell: kubectl taint --allow-missing-template-keys=true nodes {{ hostname }} node-role.kubernetes.io/master:NoSchedule- && touch $HOME/removed_taint.lock
   args:
     chdir: $HOME
     creates: $HOME/removed_taint.lock
