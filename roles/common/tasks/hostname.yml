@@ -1,6 +1,6 @@
 ---
 - name: change name
-  raw: "echo {{ inventory_hostname }} > /etc/hostname"
+  raw: "echo {{ hostname|quote }} > /etc/hostname"
 
 - name:
-  shell: hostname {{ inventory_hostname }}
+  shell: hostname {{ hostname|quote }}

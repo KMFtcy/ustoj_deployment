@@ -1,0 +1,33 @@
+---
+# tasks file for nfs_exporter
+- name: Ensure NFS utilities are installed.
+  apt:
+    name:
+      - nfs-common
+      - nfs-kernel-server
+    state: present
+
+- name: Create a mountable directory if it does not exist
+  file:
+    path: "{{ item.path }}"
+    state: directory
+    mode: '0777'
+    force: yes
+  with_items:
+    - "{{ nfs_exports }}"
+
+- name: Chmod mountable directory
+  shell: "chmod -R 777 {{ item.path }}"
+  with_items:
+    - "{{ nfs_exports }}"
+
+- name: Copy exports file.
+  template:
+    src: exports.j2
+    dest: /etc/exports
+    owner: root
+    group: root
+    mode: 0644
+
+- name: NFS service restart
+  shell: sudo /etc/init.d/nfs-kernel-server restart

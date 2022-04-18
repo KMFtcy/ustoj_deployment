@@ -1,11 +1,11 @@
-master ansible_ssh_host=192.168.31.80
-worker1 ansible_ssh_host=192.168.31.107
-
 [masterServer]
-master
+192.168.31.80 hostname=master
 
 [workerServer]
-worker1
+192.168.31.107 hostname=worker1
 
-[database]
-master
+[database:children]
+masterServer
+
+[nfsServer:children]
+masterServer

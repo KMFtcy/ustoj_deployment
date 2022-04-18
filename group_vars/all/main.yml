@@ -1,4 +1,15 @@
 ---
+# nfs related
+nfs_ustoj_server_path: /data/ustoj
+nfs_ustoj_client_path: /data/ustoj
+nfs_exports:
+  - path: "{{ nfs_ustoj_server_path }}"
+    export: "{{ nfs_ustoj_server_path }} *(rw,sync,no_root_squash)"
+nfs_client_imports:
+  - local: "{{ nfs_ustoj_client_path }}"
+    remote: "{{ nfs_ustoj_server_path }}"
+    server_host: "{{groups['nfsServer'][0]}}"
+
 # database related
 database_user: root
 database_password: 123456
@@ -16,3 +27,4 @@ apt_package:
   - kubeadm
   - kubelet
   - kubectl
+  - nfs-common
