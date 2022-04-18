@@ -3,12 +3,16 @@
 #   roles:
 #   - common
 
-- hosts: masterServer
-  roles:
-  # - k8s_master
-  - ustoj_master
+# - hosts: masterServer
+#   roles:
+#   - k8s_master
+#   - ustoj_master
 
 # - hosts: workerServer
 #   roles:
 #   - k8s_worker
 #   - ustoj_worker
+
+- hosts: database
+  roles:
+  - mysql_server

@@ -1,9 +1,3 @@
-- name: test bug
-  debug: 
-    msg: "{{ item }}"
-  with_items:
-    - "{{ apt_package }}"
-
 - name: We are in china, choose a better source, copy source file
   copy:
     src: "update_apt_source.sh"

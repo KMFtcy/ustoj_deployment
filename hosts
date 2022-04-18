@@ -6,3 +6,6 @@ master
 
 [workerServer]
 worker1
+
+[database]
+master

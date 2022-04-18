@@ -36,8 +36,11 @@
     remote_src: yes
 
 - name: apply weave net as cni
-  remote_user: root
-  shell: kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+  shell: kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')" && touch $HOME/weave_net_configured.lock
+  args:
+    chdir: $HOME
+    creates: $HOME/weave_net_configured.lock
+
 
 - name: Get the token for joining the worker nodes
   shell: kubeadm token create  --print-join-command
@@ -50,6 +53,9 @@
 - name: Copy join command to local file.
   local_action: copy content="{{ kubernetes_join_command.stdout_lines[0] }}" dest="{{ k8s_join_command_file_path }}" mode=0666
 
-- name: apply weave net as cni
+- name: remove master taint
   remote_user: root
-  shell: kubectl taint nodes {{ inventory_hostname }} node-role.kubernetes.io/master:NoSchedule-
+  shell: kubectl taint --allow-missing-template-keys=true nodes {{ inventory_hostname }} node-role.kubernetes.io/master:NoSchedule- && touch $HOME/removed_taint.lock
+  args:
+    chdir: $HOME
+    creates: $HOME/removed_taint.lock

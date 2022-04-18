@@ -1,0 +1,28 @@
+---
+# tasks file for mysql_server
+
+# label node
+- name: label master node
+  shell: kubectl --overwrite=true label nodes {{ inventory_hostname }} ustoj-database=mysql
+
+- name: Create a directory if it does not exist
+  local_action:
+    module: file
+    path: /tmp/ustoj_database
+    state: directory
+    mode: '0755'
+
+# generate mysql template
+- name: generate mysql template
+  local_action:
+    module: template
+    src: mysql-deployment.yaml
+    dest: /tmp/ustoj_database/deployment.yaml
+    mode: '0644'
+    force: yes
+
+# apply mysql deployment
+- name: apply mysql deployment
+  local_action:
+    module: shell
+    cmd: kubectl --kubeconfig {{ k8s_admin_config_local_dir }}/admin.conf apply -f /tmp/ustoj_database/deployment.yaml

@@ -1,0 +1,45 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ database_service_name }}
+spec:
+  ports:
+  - port: 3306
+  selector:
+    app: ustoj-mysql
+  clusterIP: None
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ustoj-mysql
+spec:
+  selector:
+    matchLabels:
+      app: ustoj-mysql
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: ustoj-mysql
+    spec:
+      nodeSelector: 
+        ustoj-database: mysql
+      containers:
+      - image: mysql:5.6
+        name: mysql
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: "{{ database_password }}"
+        ports:
+        - containerPort: 3306
+          name: ustoj-mysql
+        volumeMounts:
+        - name: mysql-persistent-storage
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: mysql-persistent-storage
+        hostPath:
+            path: "{{ database_mount_host_path }}"
