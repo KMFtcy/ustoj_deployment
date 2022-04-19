@@ -1,0 +1,36 @@
+---
+# handlers file for ustoj_frontend
+# generate app config
+- name: make a config
+  local_action:
+    module: template
+    src: configmap/config.yaml.j2
+    dest: /tmp/ustoj_frontend/config_cm.yaml
+    mode: '0644'
+    force: yes
+# generate app service
+- name: make a service yaml
+  local_action:
+    module: template
+    src: services/ustoj_frontend.yaml.j2
+    dest: /tmp/ustoj_frontend/service.yaml
+    mode: '0644'
+    force: yes
+# generate app deployment
+- name: make a deployment yaml
+  local_action:
+    module: template
+    src: deployment/ustoj_frontend.yaml.j2
+    dest: /tmp/ustoj_frontend/deployment.yaml
+    mode: '0644'
+    force: yes
+# apply all yaml
+- name: apply deployment
+  local_action:
+    module: shell
+    cmd: kubectl --kubeconfig {{ k8s_admin_config_local_dir }}/admin.conf apply -f /tmp/ustoj_frontend/config_cm.yaml -f /tmp/ustoj_frontend/deployment.yaml -f /tmp/ustoj_frontend/service.yaml
+# clear directory
+- name: clear directory
+  local_action:
+    module: shell
+    cmd: rm -rf /tmp/ustoj_frontend

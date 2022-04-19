@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ ustoj_frontend_cm_name }}
+data:
+  config.json: |
+    {
+        database: {
+            user: "{{ database_user }}",
+            password: "{{ database_password }}",
+            address: "{{ database_service_name }}",
+            port: "{{ database_port }}"
+        }
+    }

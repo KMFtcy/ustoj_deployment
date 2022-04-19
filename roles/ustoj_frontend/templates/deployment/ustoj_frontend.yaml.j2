@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ustoj-frontend-deployment
+  labels:
+    app: ustoj-frontend-deployment
+spec:
+  replicas: {{ ustoj_frontend_replicas }}
+  selector:
+    matchLabels:
+      app: ustoj-frontend
+  template:
+    metadata:
+      labels:
+        app: ustoj-frontend
+    spec:
+      nodeSelector: 
+        ustoj-frontend: ture
+      containers:
+      - name: ustoj-frontend
+        image: {{ ustoj_frontend_image }}:{{ ustoj_frontend_image_version }}
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - mountPath: /etc/ustoj/frontend/config
+          name: ustoj-frontend-config
+        # ports:
+        # - containerPort: 80
+      volumes:
+      - name: ustoj-frontend-config
+        configMap:
+          name: {{ ustoj_frontend_cm_name }}

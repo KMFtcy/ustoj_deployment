@@ -1,0 +1,9 @@
+---
+# vars file for ustoj_frontend
+ustoj_frontend_replicas: 1
+ustoj_frontend_image: ustoj/ustoj_frontend
+ustoj_frontend_image_version: latest
+
+ustoj_frontend_cm_name: ustoj-ustoj-frontend-config
+data_host_path: /data/ustoj/ustoj_frontend
+data_pod_path: /data/ustoj/

@@ -1,0 +1,18 @@
+---
+# tasks file for ustoj_frontend
+# label node
+- name: label frontend node
+  local_action:
+    module: shell
+    cmd: kubectl --kubeconfig {{ k8s_admin_config_local_dir }}/admin.conf --overwrite=true label nodes {{ hostname }} ustoj-frontend=ture
+- name: Create a directory if it does not exist
+  local_action:
+    module: file
+    path: /tmp/ustoj_frontend
+    state: directory
+    mode: '0755'
+  notify:
+  - make a config 
+  - make a service yaml
+  - make a deployment yaml
+  - apply deployment
