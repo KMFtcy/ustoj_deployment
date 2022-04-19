@@ -36,7 +36,6 @@
   roles:
   - mysql_server
 
-
 # setup frontend (only apply deployment once)
 - hosts: frontendServer
   roles:

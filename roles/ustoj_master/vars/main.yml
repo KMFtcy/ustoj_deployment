@@ -3,6 +3,9 @@
 ustoj_master_replicas: 1
 ustoj_master_image: ustoj/master
 ustoj_master_image_version: latest
+ustoj_master_ticker_replicas: 1
+ustoj_master_ticker_image: ustoj/master-ticker
+ustoj_master_ticker_image_version: latest
 
 ustoj_master_cm_name: ustoj-master-config
 data_host_path: /data/ustoj/master

@@ -12,4 +12,6 @@
     mode: 0777
 
 - name: reload daemon
-  shell: systemctl daemon-reload && systemctl restart docker
+  shell: systemctl daemon-reload && systemctl restart docker && touch $HOME/docker_setup.lock
+  args:
+    creates: $HOME/docker_setup.lock

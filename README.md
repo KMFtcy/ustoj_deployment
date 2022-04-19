@@ -1,11 +1,20 @@
 # ustoj_deployment
 
-This project is built to deploy ustoj system on cluster.
+This project is designed to deploy ustoj system on cluster.
 
 We use ansible-playbook to handle the job.
 
 # Preparation
 
+## Deploy machine
+A deploy machine is one which is used for deploy deploy the cluster. It is outside the cluster and once the deployment is done, its work is also done.
+
+A deploy machine can be your laptop or a remote accessor. A deploy machine should satisfy the following reaquirements:
+> * A Linux OS system
+> * Ansible installed
+> * Kubectl installed
+
+## Cluster machine
 1. Install Ubuntu 20.04 on each cluster machine, set up root account password. 
 
 Then modify `/etc/ssh/sshd_config to allow root login permission. After that, remember to restart sshd service:
@@ -23,19 +32,11 @@ ssh-keygen
 ssh-copy-id root@{cluster machine address}
 ```
 
-4. Each machine should have different hostname!
+# Deploy
 
-## Install dependencies on deploy machine
+1. Write master address and worker address in `./host`. Remember to appoint different hostname to each machine.
 
-> * ansible
-
-# Fill out config
-
-1. Write master address and worker address in `./host`
-
-# Ready to deploy
-
-1. Run command under the root directory
+2. Run command under the root directory
 ```bash
 ansible-playbook -i hosts deploy.yml
 ```
