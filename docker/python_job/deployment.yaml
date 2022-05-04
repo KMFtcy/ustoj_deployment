@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ustoj-job-{{id}}
+  labels:
+    app: ustoj-job
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ustoj-job
+  template:
+    metadata:
+      labels:
+        app: ustoj-jon-{{id}}
+    spec:
+      nodeSelector: 
+        ustoj: worker
+      containers:
+      - name: ustoj-job-{{env_name}}-{{id}}
+        image: {{env_name}}:{{env_version}}
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - mountPath: /etc/ustoj/frontend/config
+          name: ustoj-frontend-config
+        # ports:
+        # - containerPort: 80
+      volumes:
+      - name: ustoj-frontend-config
+        configMap:
+          name: {{ ustoj_frontend_cm_name }}

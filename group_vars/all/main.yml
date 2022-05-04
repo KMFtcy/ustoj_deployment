@@ -14,7 +14,7 @@ nfs_client_imports:
 database_user: root
 database_password: 123456
 database_service_name: mysql
-database_port: 3006
+database_port: 3306
 database_mount_host_path: /data/ustoj/database/
 
 # k8s related

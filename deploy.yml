@@ -1,4 +1,10 @@
 ---
+# - hosts: all
+#   tasks: 
+#   - name: debug-msg
+#     debug: 
+#       msg: "{{ groups['masterServer'][0] }}"
+
 - hosts: all
   roles:
   - common

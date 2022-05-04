@@ -4,8 +4,25 @@ metadata:
   name: {{ ustoj_master_cm_name }}
 data:
   config.yaml: |
-    database:
-        user: {{ database_user }}
-        password: {{ database_password }}
-        address: {{ database_service_name }}
+    server:
+        port: 8080
+
+    datasource:
+        driverName: mysql
+        host: {{ database_service_name }}
         port: {{ database_port }}
+        database: ustoj
+        username: {{ database_user }}
+        password: {{ database_password }}
+        charset: utf8
+
+    logger:
+        writeFile: true
+        level: info
+
+    scheduler:
+        dispatchInterval: 1
+
+    kubernetes:
+        masterUrl: https://{{groups['masterServer'][0]}}:6443
+        masterConfig: /etc/kubernetes/admin.conf
