@@ -15,13 +15,13 @@ spec:
         app: ustoj-frontend
     spec:
       nodeSelector: 
-        ustoj-frontend: ture
+        ustoj-frontend: up
       containers:
       - name: ustoj-frontend
         image: {{ ustoj_frontend_image }}:{{ ustoj_frontend_image_version }}
         imagePullPolicy: IfNotPresent
         volumeMounts:
-        - mountPath: /etc/ustoj/frontend/config
+        - mountPath: /usr/src/app/src/components/config/
           name: ustoj-frontend-config
         # ports:
         # - containerPort: 80

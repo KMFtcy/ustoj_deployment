@@ -3,9 +3,11 @@ kind: Service
 metadata:
   name: ustoj-frontend-service
 spec:
+  type: NodePort
   selector:
     app: ustoj-frontend
   ports:
     - protocol: TCP
-      port: 80
-      targetPort: 80
+      nodePort: 30000
+      port: 8080
+      targetPort: {{ustoj_frontend_port}}

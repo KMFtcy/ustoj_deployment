@@ -23,7 +23,7 @@ spec:
         volumeMounts:
         - mountPath: {{ data_pod_path }}
           name: ustoj-master-data-hostpath
-        - mountPath: /etc/ustoj/master/config
+        - mountPath: /etc/ustoj/master-apiserver
           name: ustoj-master-config
         # ports:
         # - containerPort: 80

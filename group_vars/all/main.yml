@@ -29,3 +29,7 @@ apt_package:
   - kubelet
   - kubectl
   - nfs-common
+
+# ustoj related
+ustoj_jwt_token: 429abc74-9bc6-4bbb-a25a-420e19d1891a
+ustoj_backend_api_service_name: ustoj-master-service

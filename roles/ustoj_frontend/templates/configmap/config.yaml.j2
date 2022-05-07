@@ -5,10 +5,7 @@ metadata:
 data:
   config.json: |
     {
-        database: {
-            user: "{{ database_user }}",
-            password: "{{ database_password }}",
-            address: "{{ database_service_name }}",
-            port: "{{ database_port }}"
-        }
+      "jwt_token": "{{ustoj_jwt_token}}",
+      "backend_address": "{{ustoj_backend_api_service_name}}",
+      "front_port": "{{ustoj_frontend_port}}"
     }
