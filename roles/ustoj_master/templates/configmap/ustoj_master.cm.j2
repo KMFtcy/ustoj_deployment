@@ -21,7 +21,12 @@ data:
         level: info
 
     scheduler:
-        dispatchInterval: 1
+        dispatchInterval: 2
+        dispatchNum: 8
+        readResultInterval: 4
+
+    dataPath:
+        submitPath: {{data_pod_path}}/submit/
 
     kubernetes:
         masterUrl: https://{{groups['masterServer'][0]}}:6443

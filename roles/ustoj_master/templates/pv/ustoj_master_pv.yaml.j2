@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ustoj_master_data_pv_name}}
+  labels:
+    type: ustoj-data
+spec:
+  storageClassName: ustoj
+  capacity:
+    storage: 1000Gi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: "{{data_host_path}}"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ustoj_master_data_pvc_name}}
+spec:
+  storageClassName: ustoj
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1000Gi

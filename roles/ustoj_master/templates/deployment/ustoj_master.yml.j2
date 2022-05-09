@@ -29,8 +29,8 @@ spec:
         # - containerPort: 80
       volumes:
       - name: ustoj-master-data-hostpath
-        hostPath:
-            path: {{ data_host_path }}
+        persistentVolumeClaim:
+          claimName: {{ustoj_master_data_pvc_name}}
       - name: ustoj-master-config
         configMap:
           name: {{ ustoj_master_cm_name }}
@@ -67,8 +67,8 @@ spec:
           readOnly: true
       volumes:
       - name: ustoj-master-data-hostpath
-        hostPath:
-            path: {{ data_host_path }}
+        persistentVolumeClaim:
+          claimName: {{ustoj_master_data_pvc_name}}
       - name: ustoj-master-config
         configMap:
           name: {{ ustoj_master_cm_name }}

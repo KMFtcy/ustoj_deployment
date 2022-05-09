@@ -9,5 +9,7 @@ ustoj_master_ticker_image_version: latest
 
 api_server_port: 9293
 ustoj_master_cm_name: ustoj-master-config
+ustoj_master_data_pv_name: ustoj-master-data-pv
+ustoj_master_data_pvc_name: ustoj-master-data-pvc
 data_host_path: /data/ustoj/master
 data_pod_path: /data/ustoj/

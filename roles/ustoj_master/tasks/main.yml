@@ -21,6 +21,15 @@
     mode: '0644'
     force: yes
 
+# generate app config
+- name: make pv and pvc
+  local_action:
+    module: template
+    src: pv/ustoj_master_pv.yaml.j2
+    dest: /tmp/ustoj_master/pvc.yaml
+    mode: '0644'
+    force: yes
+
 # generate app service
 - name: make a service yaml
   local_action:
@@ -43,4 +52,4 @@
 - name: apply deployment
   local_action:
     module: shell
-    cmd: kubectl --kubeconfig {{ k8s_admin_config_local_dir }}/admin.conf apply -f /tmp/ustoj_master/config_cm.yaml -f /tmp/ustoj_master/deployment.yaml -f /tmp/ustoj_master/service.yaml
+    cmd: kubectl --kubeconfig {{ k8s_admin_config_local_dir }}/admin.conf apply -f /tmp/ustoj_master/config_cm.yaml -f /tmp/ustoj_master/pvc.yaml -f /tmp/ustoj_master/deployment.yaml -f /tmp/ustoj_master/service.yaml
