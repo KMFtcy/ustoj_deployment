@@ -11,7 +11,7 @@ data:
         driverName: mysql
         host: {{ database_service_name }}
         port: {{ database_port }}
-        database: ustoj
+        database: {{ database_name }}
         username: {{ database_user }}
         password: {{ database_password }}
         charset: utf8
@@ -24,9 +24,13 @@ data:
         dispatchInterval: 2
         dispatchNum: 8
         readResultInterval: 4
+        jobPvcName: {{ustoj_master_data_pvc_name}}
 
     dataPath:
         submitPath: {{data_pod_path}}/submit/
+
+    const:
+        delimiter: ","
 
     kubernetes:
         masterUrl: https://{{groups['masterServer'][0]}}:6443
